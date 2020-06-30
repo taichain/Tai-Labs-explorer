@@ -27,7 +27,7 @@ npm i
 
 ``` config models
 var config = {
-    "rpc": 'http://localhost:9646',
+    "rpc": 'http://172.31.216.209:9646',
     "blocks": [ {"start": 0, "end": "latest"}],
     "quiet": true,
     "terminateAtExistingDB": false,

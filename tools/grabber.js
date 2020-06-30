@@ -114,7 +114,7 @@ var intervalBlocks = function(_intervalTime) {
             return;
         }
         if(!doc)
-            lastBlockNum=29550824;
+            lastBlockNum=0;
         else
             lastBlockNum = doc.number-1;//Avoid incomplete collection of the last block in the database
 
@@ -632,8 +632,9 @@ var hex2ascii = function (hexIn) {
 
 var config = {
     // "rpc": 'http://192.168.199.214:9646',//t
-    // "rpc": 'http://localhost:9646',
-    "rpc": 'http://etzrpc.org:80',
+    // "rpc": 'http://172.31.216.209:9646',
+    "rpc": 'http://172.31.216.209:9646',
+    // "rpc": 'http://8.210.38.80:9646',
     // "rpc": 'http://13.115.55.39:9646',
 
     "blocks": [ {"start": 0, "end": "latest"}],

@@ -7,7 +7,7 @@ require( '../db-internal.js' );
 var http = require('http');
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://rpc.TaiChain.org:9646"));
-// var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9646"));
+// var web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
 
 var mongoose = require( 'mongoose' );
 var InternalTx     = mongoose.model( 'InternalTransaction' );

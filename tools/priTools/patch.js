@@ -63,7 +63,7 @@ const METHOD_DIC = {
 
 //modify according to your actual situation.
 var config3 = {
-    "httpProvider":"http://localhost:9646",
+    "httpProvider":"http://172.31.216.209:9646",
     // "httpProvider":"http://TAIrpc.org:80",
     // "httpProvider":"http://13.250.204.142:9646",
     "patchStartBlocks":2591,//contain patchStartBlocks

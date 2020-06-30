@@ -14,7 +14,7 @@ var insertNum = 0;
 var fromBlock = 4438399;
 var toBlock = 4619223;
 var addrList = [];
-var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
 
 function grabeMiner(){
     Block.find({"number":{$gt:fromBlock, $lt:toBlock}}, "miner").exec((err, docs)=>{

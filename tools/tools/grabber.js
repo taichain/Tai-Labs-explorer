@@ -627,7 +627,7 @@ setInterval(function(){
 
 var config = {
     // "rpc": 'http://192.168.199.214:9646',//t 
-    "rpc": 'http://localhost:9646',
+    "rpc": 'http://172.31.216.209:9646',
     // "rpc": 'http://TAIrpc.org:80',
     // "rpc": 'http://13.115.55.39:9646',
     
