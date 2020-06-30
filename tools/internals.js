@@ -6,7 +6,7 @@ require( '../db-internal.js' );
 
 var http = require('http');
 var Web3 = require('web3');
-var web3 = new Web3(new Web3.providers.HttpProvider("http://rpc.etherzero.org:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://rpc.TaiChain.org:9646"));
 // var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9646"));
 
 var mongoose = require( 'mongoose' );
@@ -25,7 +25,7 @@ function grabInternalTxs(batchNum, batchSize) {
     "id":' + batchNum + '}';
 
   var post_options = {
-      // host: 'rpc.etherzero.org',
+      // host: 'rpc.TaiChain.org',
       host: 'localhost',
       port: '9646',
       path: '/',

@@ -1,15 +1,15 @@
-### ETZExplorer 
+### TAIExplorer 
 
-* Live Version: [etzscan.com](https://etzscan.com/)
-* Follow the project progress at: [ETZ Block Explorer Development](http://etherzero.org/) 
+* Live Version: [TAIscan.com](https://TAIscan.com/)
+* Follow the project progress at: [TAI Block Explorer Development](http://TaiChain.org/) 
 
 #### Local installation
 
 * Make sure you already have installed node,if not,please refered [this](https://nodejs.org/en/)
 
 ``` download codes
-git clone git@github.com:etherzero-org/explorer.git
-cd explorer
+git clone https://github.com/Tai-Labs/Tai-Labs-explorer.git
+cd Tai-Labs-explorer
 npm i
 ```
 
@@ -36,7 +36,7 @@ var config = {
 };
 ```
 
-* rpc etherzero rpc which your browser will grab data from
+* rpc TaiChain rpc which your browser will grab data from
 * blocks  is a list of blocks to grab. It can be specified as a list of block numbers or an interval of block numbers. When specified as an interval, it will start at the ```end``` block and keep recording decreasing block numbers. 
 * terminateAtExistingDB will terminate the block grabber once it gets to a block it has already stored in the DB.
 * quiet prints out the log of what it is doing. currently not use

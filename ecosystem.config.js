@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     name: 'app',
     script: 'app.js',
-    cwd: '/var/www/etzBrowser',
+    cwd: '/var/www/TAIBrowser',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     // args: 'one two',
@@ -23,7 +23,7 @@ module.exports = {
   {
     name: 'grabber',
     script: 'tools/grabber.js',
-    cwd: '/var/www/etzBrowser',
+    cwd: '/var/www/TAIBrowser',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     // args: 'one two',

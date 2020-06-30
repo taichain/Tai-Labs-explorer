@@ -64,7 +64,7 @@ const METHOD_DIC = {
 //modify according to your actual situation.
 var config3 = {
     "httpProvider":"http://localhost:9646",
-    // "httpProvider":"http://etzrpc.org:80",
+    // "httpProvider":"http://TAIrpc.org:80",
     "patchStartBlocks":6095689,//contain patchStartBlocks
     "patchEndBlocks":6095689,//"latest",//5485123,//600//not contain patchEndBlocks
     "quiet": true,
@@ -211,7 +211,7 @@ var upsertAddress=function(miner, addrs){
 
 var updateFromNode = function(addr){
     var balance = web3.eth.getBalance(addr);
-    if(balance<10000000000000000000)//save address which balance is great than 10 ETZ 
+    if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {
         if(err){
@@ -453,8 +453,8 @@ var writeTransactionsToDB3 = function(blockData, eth) {
 */
 var patchBlocks3 = function() {
     // web3 = new Web3(new Web3.providers.HttpProvider('http://106.14.105.179:9646'));
-    // web3 = new Web3(new Web3.providers.HttpProvider('http://rpc.etherzero.org:80'));
-    // web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.etherzero.org:443'));
+    // web3 = new Web3(new Web3.providers.HttpProvider('http://rpc.TaiChain.org:80'));
+    // web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.TaiChain.org:443'));
     web3 = new Web3(new Web3.providers.HttpProvider(config3.httpProvider));
     var lastBlock = web3.eth.blockNumber;
     if(config3.patchEndBlocks == "latest"){

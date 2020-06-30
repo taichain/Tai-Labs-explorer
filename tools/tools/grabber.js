@@ -291,7 +291,7 @@ var upsertAddress=function(miner, addrs){
                     console.log("err:", err);
             }
         )
-        //add reward to ETZ Community
+        //add reward to TAI Community
         Address.update({"addr":socailAddr},
             {$inc:{"balance":112500000000000000}},
             {upsert: true},
@@ -324,7 +324,7 @@ var upsertAddress=function(miner, addrs){
 
 var updateFromNode = function(addr){
     var balance = web3.eth.getBalance(addr);
-    if(balance<10000000000000000000)//save address which balance is great than 10 ETZ 
+    if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {
         if(err){
@@ -628,7 +628,7 @@ setInterval(function(){
 var config = {
     // "rpc": 'http://192.168.199.214:9646',//t 
     "rpc": 'http://localhost:9646',
-    // "rpc": 'http://etzrpc.org:80',
+    // "rpc": 'http://TAIrpc.org:80',
     // "rpc": 'http://13.115.55.39:9646',
     
     "blocks": [ {"start": 0, "end": "latest"}],

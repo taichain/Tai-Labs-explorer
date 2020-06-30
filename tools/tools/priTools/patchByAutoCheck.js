@@ -34,7 +34,7 @@ const METHOD_DIC = {
 //modify according to your actual situation.
 var config3 = {
     "httpProvider":"http://localhost:9646",
-    // "httpProvider":"http://etzrpc.org:80",
+    // "httpProvider":"http://TAIrpc.org:80",
     "patchStartBlocks": 5607035,//1
     "patchEndBlocks": 5607035,//"latest",//5485123,//600
     "quiet": true,
@@ -173,7 +173,7 @@ var upsertAddress=function(miner, addrs){
 
 var updateFromNode = function(addr){
     var balance = web3.eth.getBalance(addr);
-    if(balance<10000000000000000000)//save address which balance is great than 10 ETZ 
+    if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {
         if(err){

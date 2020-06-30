@@ -297,7 +297,7 @@ var upsertAddress=function(miner, addrs){
                     console.log("err:", err);
             }
         )
-        //add reward to ETZ Community
+        //add reward to TAI Community
         Address.update({"addr":socailAddr},
             {$inc:{"balance":0.1125}},
             {upsert: true},
@@ -330,7 +330,7 @@ var upsertAddress=function(miner, addrs){
 
 var updateFromNode = function(addr){
     var balance = web3.eth.getBalance(addr);
-    if(balance<10000000000000000000)//save address which balance is great than 10 ETZ
+    if(balance<10000000000000000000)//save address which balance is great than 10 TAI
         return;
     Address.insertMany([{"addr":addr, "balance":Number(etherUnits.toEther(balance, 'wei'))}], function (err, doc) {
         if(err){
