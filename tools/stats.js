@@ -9,7 +9,7 @@ var BlockStat = require( '../db-stats.js' ).BlockStat;
 
 var updateStats = function() {
     // var web3 = new Web3(new Web3.providers.HttpProvider('http://rpc.TaiChain.org:9646')); 
-    var web3 = new Web3(new Web3.providers.HttpProvider('http://172.31.216.209:9646')); 
+    var web3 = new Web3(new Web3.providers.HttpProvider('http://47.242.8.8:9646')); 
     mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/blockDB');
     mongoose.set('debug', true);
 

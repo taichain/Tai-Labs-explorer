@@ -10,7 +10,7 @@ var  fs  = require("fs");
 var rawFilePath = "./lessList.txt";//w 
 var content = fs.readFileSync(rawFilePath, "utf8");
 var rawAddrList = JSON.parse(content);//[addr,balance,addr,balance,...]
-var web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
 
 var index = -1;
 var insertNum = 0;

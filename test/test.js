@@ -10,7 +10,7 @@ var mongoose = require( 'mongoose' );
 var Block     = mongoose.model( 'Block' );
 var Transaction     = mongoose.model( 'Transaction' );
 var Contract     = mongoose.model( 'Contract' );
-// var providerURL = 'http://172.31.216.209:9646';
+// var providerURL = 'http://47.242.8.8:9646';
 var providerURL = 'http://35.183.62.96:9646';
 
 var startTest = function(config) {

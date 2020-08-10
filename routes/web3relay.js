@@ -25,10 +25,10 @@ if (typeof web3 !== "undefined") {
   web3 = new Web3(web3.currentProvider);
 } else {
   // web3 = new Web3(new Web3.providers.HttpProvider("http://8.210.38.80:9646"));//t
-  web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
+  web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
   masternodeContract = web3.eth.contract(masternodeAbi).at('0x000000000000000000000000000000000000000a');
    benefitContract = web3.eth.contract(ABI).at(benefitCat)
-  // web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
+  // web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
   // web3 = new Web3(new Web3.providers.HttpProvider("http://13.115.55.39:9646"));
 }
 

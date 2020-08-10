@@ -20,7 +20,7 @@ var InternalTx     = mongoose.model( 'InternalTransaction' );
 if (typeof web3 !== "undefined") {
   web3 = new Web3(web3.currentProvider);
 } else {
-  web3 = new Web3(new Web3.providers.HttpProvider("http://172.31.216.209:9646"));
+  web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
 }
 
 if (web3.isConnected()) 
