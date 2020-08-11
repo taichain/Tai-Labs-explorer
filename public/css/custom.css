@@ -1,7 +1,7 @@
 div.page-logo {overflow: visible;}
 img.logo-default {
-    max-height: 150px;
-    height: 100px;
+    width: 30%;
+    margin: 10% 10%;
 }
 .create{background-color:#36c6d3}
 .truncate-txhash, .truncate-addrhash{
@@ -140,6 +140,10 @@ li.ng-scope {
     }
     .page-header .page-header-top .menu-toggler {
         margin: 33px 3px 0 0;
+    }
+    img.logo-default {
+        width: 60%;
+        margin: 10% 10%;
     }
 }
 ::-webkit-scrollbar {
