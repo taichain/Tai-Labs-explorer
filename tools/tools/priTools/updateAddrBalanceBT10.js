@@ -10,7 +10,7 @@ var  fs  = require("fs");
 var rawFilePath = "./rich-list-10.txt";//w 
 var content = fs.readFileSync(rawFilePath, "utf8");
 var rawAddrList = JSON.parse(content);//[addr,balance,addr,balance,...]
-var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
 
 var index = -2;
 var insertNum = 0;

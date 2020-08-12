@@ -33,8 +33,8 @@ const METHOD_DIC = {
 
 //modify according to your actual situation.
 var config3 = {
-    "httpProvider":"http://47.242.8.8:9646",
-    // "httpProvider":"http://47.242.8.8:9646",
+    "httpProvider":"http://47.242.34.250:8787",
+    // "httpProvider":"http://47.242.34.250:8787",
     "patchStartBlocks": 5607035,//1
     "patchEndBlocks": 5607035,//"latest",//5485123,//600
     "quiet": true,

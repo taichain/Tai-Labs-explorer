@@ -453,7 +453,7 @@ function patchNoReciept(){
 }
 
 var config = {
-    "rpc": 'http://47.242.8.8:9646',
+    "rpc": 'http://47.242.34.250:8787',
     "blocks": [ {"start": 0, "end": "latest"}],
     // "blocks": [ {"start": 4936270, "end": "latest"}],//ttt
     "quiet": true,

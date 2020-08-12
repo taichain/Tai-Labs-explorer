@@ -306,8 +306,9 @@ var totalMasterNodes = function(req, res) {
     var contractAddress = "0x000000000000000000000000000000000000000a";
     masterNodeContract = contractOBJ.at(contractAddress);
   }
+  console.log("masterNodeContract--",masterNodeContract)
   if(masterNodeContract){
-    res.write(String(masterNodeContract.count()));
+    res.write(String(masterNodeContract.count()-1));
   }
   res.end();
 }

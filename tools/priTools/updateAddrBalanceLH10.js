@@ -5,7 +5,7 @@ var Web3 = require('web3');
 
 var mongoose = require( 'mongoose' );
 var Address = mongoose.model('Address');
-var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
 var rawAddrList = [];
 var index = -1;
 var insertNum = 0;

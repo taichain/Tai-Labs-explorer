@@ -13,7 +13,7 @@ var Contract = mongoose.model('Contract');
 //==================config===============
 var startBlockNumber = -1;//上次采集高度
 var topBlockNumber=3833592+1;//本次采集高度
-var rpc = "http://47.242.8.8:9646";
+var rpc = "http://47.242.34.250:8787";
 
 var contractAddrs =[];
 var masternodeAddrs = [];

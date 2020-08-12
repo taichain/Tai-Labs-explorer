@@ -1,5 +1,5 @@
 /var/www/etzBrowser/tools/priTools/internalTX_txhash.js:12
-var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.8.8:9646"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
            ^
 
 ReferenceError: Web3 is not defined
