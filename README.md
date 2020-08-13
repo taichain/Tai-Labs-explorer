@@ -1,6 +1,6 @@
 ### TAIExplorer 
 
-* Live Version: [TAIscan.com](https://TAIscan.com/)
+* Live Version: [TAIscan.com](http://explorer.titprotocol.com/)
 * Follow the project progress at: [TAI Block Explorer Development](http://TaiChain.org/) 
 
 #### Local installation
