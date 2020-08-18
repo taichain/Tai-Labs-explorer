@@ -286,7 +286,7 @@ var todayRewards = function(req, res) {
       res.end();
       return;
     }
-    res.write(String(regDecimal(0.3375*c, 4)));
+    res.write(String(regDecimal(0.38589*c, 4)));
     res.end();
   });
 }
@@ -306,7 +306,7 @@ var totalMasterNodes = function(req, res) {
     var contractAddress = "0x000000000000000000000000000000000000000a";
     masterNodeContract = contractOBJ.at(contractAddress);
   }
-  console.log("masterNodeContract--",masterNodeContract)
+  // console.log("masterNodeContract--",masterNodeContract)
   if(masterNodeContract){
     res.write(String(masterNodeContract.count()-1));
   }
@@ -341,7 +341,7 @@ var sendBlocks = function(lim, res) {
 
       result.TPS = totalTXs/costTime;
       result.TPS = Math.round(result.TPS*1000)/1000;
-      result.meanDayRewards = 0.3375*docs[0].number/((docs[0].timestamp-firstDayTime)/oneDaySeconds);
+      result.meanDayRewards = 0.38589*docs[0].number/((docs[0].timestamp-firstDayTime)/oneDaySeconds);
       result.meanDayRewards = regDecimal(result.meanDayRewards, 4);
     }
 
