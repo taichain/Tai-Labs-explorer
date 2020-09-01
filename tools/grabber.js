@@ -62,7 +62,7 @@ const METHOD_DIC = {
 };
 
 var ContractStruct;
-var intervalTime = 1000;//采集间隔
+var intervalTime = 100;//采集间隔
 //the TX has no receipt while grabbing block, we cache TX and grab later
 var laterGrabBlockDatas = [];
 
@@ -343,7 +343,7 @@ var updateFromNode = function(addr){
 /**
     Break transactions out of blocks and write to DB
 **/
-var pingTXAddr2 = "tit000000000000000000000000000000000000000a";
+var pingTXAddr2 = "0x000000000000000000000000000000000000000a";
 
 var writeTransactionsToDB = function(blockData) {
     var bulkOps = [];

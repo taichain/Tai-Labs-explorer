@@ -89,7 +89,6 @@ var getAddr = function(req, res){
   //   {
       data.recordsFiltered = totalTX;
       data.recordsTotal = totalTX;
-
       var addrFind = Transaction.find( { $or: [{"to": addr}, {"from": addr}] })
       addrFind.lean(true).sort('-blockNumber').skip(start).limit(limit).exec("find", function (err, docs) {
         if(err){
@@ -355,6 +354,12 @@ var sendBlocks = function(lim, res) {
 var sendTxs = function(lim, res) {
   Transaction.find({}, "hash timestamp from to value").lean(true).sort('-timestamp').limit(lim)
         .exec(function (err, txs) {
+          if(txs && txs.length>0){
+            for(var i=0;i<txs.length;i++){
+              txs[i].from = titChange.toTit(txs[i].from)
+              txs[i].to = titChange.toTit(txs[i].to)
+            }
+          }
           res.write(JSON.stringify({"txs": txs}));
           res.end();
         });
