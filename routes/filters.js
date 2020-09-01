@@ -7,6 +7,8 @@ var titChange = require('../tools/titChange')
 */
 function filterTX(txs, value) {
   return txs.filter(benefitAdd).map(function(tx){
+    tx.from = titChange.toTit(tx.from)
+    tx.to = titChange.toTit(tx.to)
     //return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.status]
     return [tx.hash, tx.blockNumber, tx.from, tx.to, String(tx.value), tx.gas, tx.timestamp, tx.status]
   })
