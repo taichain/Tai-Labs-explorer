@@ -15,10 +15,12 @@ async function calTrans(){
     if(txList && txList.length>0){
         for(var i=0;i<txList.length;i++){
             if(txList[i].addr.substr(0,2)=="0x"){
-                let new_addr ="tit"+txList[i].addr.substr(2);
-                await Address.update({"_id":txList[i]._id},{$set:{"addr":new_addr}})
+                console.log("addr--",txList[i].addr)
+                // let new_addr ="tit"+txList[i].addr.substr(2);
+                // await Address.update({"_id":txList[i]._id},{$set:{"addr":new_addr}})
             }
         }
+        console.log("ok---")
     }
     
 }
