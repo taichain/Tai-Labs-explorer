@@ -1,6 +1,6 @@
 var mongoose = require( 'mongoose' );
 const http = require('http');
-
+var titChange = require('../tools/titChange')
 var Block     = mongoose.model( 'Block' );
 var Transaction = mongoose.model( 'Transaction' );
 // var Contract = mongoose.model('Contract');
@@ -84,6 +84,7 @@ var getAddr = function(req, res){
   var start = parseInt(req.body.start);
   var data = { draw: parseInt(req.body.draw), recordsFiltered: count, recordsTotal: count };
 
+  addr = titChange.checkTit(addr)
   // Transaction.count({ $or: [{"to": addr}, {"from": addr}] }).exec().then(function(recordCount)
   //   {
       data.recordsFiltered = totalTX;
@@ -109,7 +110,8 @@ var getAddr = function(req, res){
 };
 
 var addrTXcounts = function(req, res){
-  addr = req.body.address;
+  let addr = req.body.address;
+  addr = titChange.checkTit(addr)
   try{
     Transaction.count({$or: [{"to": addr}, {"from": addr}] }).exec().then(function(result){
       res.write(JSON.stringify({"count":result}));

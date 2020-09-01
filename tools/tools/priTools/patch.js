@@ -317,8 +317,8 @@ var writeTransactionsToDB3 = function(blockData, eth) {
                             transferData.to= "0x"+txData.input.substring(34,74);
                             transferData.amount= Number("0x"+txData.input.substring(74));
                         }else{//transferFrom
-                            transferData.from= "tit"+txData.input.substring(34,74);
-                            transferData.to= "tit"+txData.input.substring(74,114);
+                            transferData.from= "0x"+txData.input.substring(34,74);
+                            transferData.to= "0x"+txData.input.substring(74,114);
                             transferData.amount= Number("0x"+txData.input.substring(114));
                         }
                         transferData.methodName = ERC20_METHOD_DIC[methodCode];

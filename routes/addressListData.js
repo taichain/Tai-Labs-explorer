@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var mongoose = require( 'mongoose' );
+var titChange = require('../tools/titChange')
 var Address = mongoose.model('Address');
 var pageSize = 20;
 var page = 0;
@@ -72,6 +73,12 @@ function getList(res, quereyParam){
       res.end();
       return;
     }
+    if(docs && docs.length>0){
+      for(var i=0;i<docs.length;i++){
+        docs[i].addr = titChange.toTit(docs[i].addr)
+      }
+    }
+    
     resultData.list=docs;
     res.write(JSON.stringify(resultData));
     res.end();

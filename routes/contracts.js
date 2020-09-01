@@ -5,10 +5,11 @@
 require( '../db.js' );
 var mongoose = require( 'mongoose' );
 var Contract     = mongoose.model( 'Contract' );
+var titChange = require('../tools/titChange')
 
 
 exports.findContract = function(address, res) {
-  var contractFind = Contract.findOne({ address : address}).lean(true);
+  var contractFind = Contract.findOne({ address : titChange.checkTit(address)}).lean(true);
   contractFind.exec(function(err, doc) {
     if (err) {
       console.error("ContractFind error: " + err);

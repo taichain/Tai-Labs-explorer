@@ -1,6 +1,7 @@
 'use strict';
 var etherUnits = require(__lib + "etherUnits.js")
 var BigNumber = require('bignumber.js');
+var titChange = require('../tools/titChange')
 /*
   Filter an array of TX 
 */
@@ -20,21 +21,21 @@ function filterTrace(txs, value) {
     var t = tx;
     if (t.type == "suicide") {
       if (t.action.address)
-        t.from = t.action.address;
+        t.from = titChange.toTit(t.action.address);
       if (t.action.balance)
         t.value = etherUnits.toEther( new BigNumber(t.action.balance), "wei");
       if (t.action.refundAddress)
-        t.to = t.action.refundAddress;
+        t.to = titChange.toTit(t.action.refundAddress);
     } else {
       if (t.action.to)
-        t.to = t.action.to;
-      t.from = t.action.from; 
+        t.to = titChange.toTit(t.action.to);
+        t.from = titChange.toTit(t.action.from); 
       if (t.action.gas)
         t.gas = new BigNumber(t.action.gas).toNumber();
       if ((t.result) && (t.result.gasUsed))
         t.gasUsed = new BigNumber(t.result.gasUsed).toNumber();
       if ((t.result) && (t.result.address))
-        t.to = t.result.address;
+        t.to = titChange.toTit(t.result.address);
       t.value = etherUnits.toEther( new BigNumber(t.action.value), "wei");            
     }
     return t;
@@ -48,6 +49,8 @@ function filterBlock(block, field, value) {
   tx = tx[0];
   if (typeof tx !== "undefined")
     tx.timestamp = block.timestamp; 
+    tx.from = titChange.toTit(tx.from)
+    tx.to = titChange.toTit(tx.to)
   return tx;
 }
 
@@ -55,6 +58,7 @@ function filterBlock(block, field, value) {
 function filterBlocks(blocks) {
   if (blocks.constructor !== Array) {
     var b = blocks;
+    b.miner = titChange.toTit(b.miner)
     b.extraData = hex2ascii(blocks.extraData);
     if(b.extraData && b.extraData.length>5){
       b.extraData = b.extraData.charCodeAt(3)+"."+b.extraData.charCodeAt(4)+"."+b.extraData.charCodeAt(5);
@@ -64,6 +68,7 @@ function filterBlocks(blocks) {
   return blocks.map(function(block) {
     var b = block;
     b.extraData = hex2ascii(block.extraData);
+    b.miner = titChange.toTit(b.miner)
     if(b.extraData && b.extraData.length>5){
       b.extraData = b.extraData.charCodeAt(3)+"."+b.extraData.charCodeAt(4)+"."+b.extraData.charCodeAt(5);
     }

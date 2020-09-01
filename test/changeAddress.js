@@ -16,13 +16,13 @@ async function changeTransfer(){
             let from=txList[i].from;
             let to=txList[i].to;
             if(txList[i].contractAdd.substr(0,2)=="0x"){
-                contractAdd = "tit"+txList[i].contractAdd.substr(2)
+                contractAdd = "0x"+txList[i].contractAdd.substr(2)
             }
             if(txList[i].from.substr(0,2)=="0x"){
-                from = "tit"+txList[i].from.substr(2)
+                from = "0x"+txList[i].from.substr(2)
             }
             if(txList[i].to.substr(0,2)=="0x"){
-                to = "tit"+txList[i].to.substr(2)
+                to = "0x"+txList[i].to.substr(2)
             }
             await Witness.update({"_id":txList[i]._id},{$set:{
                 "from":from,
@@ -41,7 +41,7 @@ async function changeWitness(){
         for(var i=0;i<txList.length;i++){
             let miner;
             if(txList[i].miner.substr(0,2)=="0x"){
-                miner = "tit"+txList[i].miner.substr(2)
+                miner = "0x"+txList[i].miner.substr(2)
             }
             await Witness.update({"_id":txList[i]._id},{$set:{"miner":miner}})
         }
@@ -58,13 +58,13 @@ async function changeLogEvent(){
             let to;
             let address;
             if(txList[i].address.substr(0,2)=="0x"){
-                address = "tit"+txList[i].address.substr(2)
+                address = "0x"+txList[i].address.substr(2)
             }
             if(txList[i].from.substr(0,2)=="0x"){
-                from = "tit"+txList[i].from.substr(2)
+                from = "0x"+txList[i].from.substr(2)
             }
             if(txList[i].to.substr(0,2)=="0x"){
-                to = "tit"+txList[i].to.substr(2)
+                to = "0x"+txList[i].to.substr(2)
             }
             await LogEvent.update({"_id":txList[i]._id},{$set:{"address":address,"from":from,"to":to}})
         }
@@ -80,10 +80,10 @@ async function changeLogEvent(){
 //             let from;
 //             let to;
 //             if(txList[i].from.substr(0,2)=="0x"){
-//                 from = "tit"+txList[i].from.substr(2)
+//                 from = "0x"+txList[i].from.substr(2)
 //             }
 //             if(txList[i].to.substr(0,2)=="0x"){
-//                 to = "tit"+txList[i].to.substr(2)
+//                 to = "0x"+txList[i].to.substr(2)
 //             }
 //             console.log("addr--",txList[i].addr)
 //             await Transaction.update({"_id":txList[i]._id},{$set:{"from":from,"to":to}})
@@ -99,7 +99,7 @@ async function changeAddr(){
         for(var i=0;i<txList.length;i++){
             if(txList[i].addr.substr(0,2)=="0x"){
                 console.log("addr--",txList[i].addr)
-                // let new_addr ="tit"+txList[i].addr.substr(2);
+                // let new_addr ="0x"+txList[i].addr.substr(2);
                 // await Address.update({"_id":txList[i]._id},{$set:{"addr":new_addr}})
             }
         }
@@ -113,7 +113,7 @@ async function changeBlock(){
         for(var i=0;i<txList.length;i++){
             if(txList[i].miner.substr(0,2)=="0x"){
                 console.log("addr--",txList[i].miner)
-                let new_addr ="tit"+txList[i].miner.substr(2);
+                let new_addr ="0x"+txList[i].miner.substr(2);
                 await Block.update({"_id":txList[i]._id},{$set:{"addr":new_addr}})
             }
         }
