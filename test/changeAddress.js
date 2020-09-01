@@ -2,13 +2,49 @@ require( '../db.js' );
 var mongoose = require( 'mongoose' );
 var Block     = mongoose.model( 'Block' );
 var Transaction     = mongoose.model( 'Transaction' );
-var Contract     = mongoose.model( 'Contract' );
-var InerTransaction     = mongoose.model( 'InerTransaction' );
 var LogEvent     = mongoose.model( 'LogEvent' );
 var Address     = mongoose.model( 'Address' );
 var Witness = mongoose.model('Witness');
 var TokenTransfer = mongoose.model('TokenTransfer');
 
+// async function changeTransaction(){
+//     let txList = await Transaction.find().sort({"balance":-1})
+//     if(txList && txList.length>0){
+//         for(var i=0;i<txList.length;i++){
+//             let from;
+//             let to;
+//             if(txList[i].from.substr(0,2)=="0x"){
+//                 from = "tit"+txList[i].from.substr(2)
+//             }
+//             if(txList[i].to.substr(0,2)=="0x"){
+//                 to = "tit"+txList[i].to.substr(2)
+//             }
+//             console.log("addr--",txList[i].addr)
+//             await Transaction.update({"_id":txList[i]._id},{$set:{"from":from,"to":to}})
+//         }
+//         console.log("ok---")
+//     }
+// }
+
+async function changeTransaction(){
+    let txList = await Transaction.find().sort({"balance":-1})
+    if(txList && txList.length>0){
+        for(var i=0;i<txList.length;i++){
+            let from;
+            let to;
+            if(txList[i].from.substr(0,2)=="0x"){
+                from = "tit"+txList[i].from.substr(2)
+            }
+            if(txList[i].to.substr(0,2)=="0x"){
+                to = "tit"+txList[i].to.substr(2)
+            }
+            console.log("addr--",txList[i].addr)
+            await Transaction.update({"_id":txList[i]._id},{$set:{"from":from,"to":to}})
+        }
+        console.log("ok---")
+    }
+}
+changeTransaction()
 
 async function changeAddr(){
     let txList = await Address.find().sort({"balance":-1})
@@ -22,11 +58,10 @@ async function changeAddr(){
         }
         console.log("ok---")
     }
-    
 }
 // changeAddr();
 async function changeBlock(){
-    let txList = await Block.find({},{"miner":true}).limit(10000)
+    let txList = await Block.find({},{"miner":true}).limit(100000)
     if(txList && txList.length>0){
         for(var i=0;i<txList.length;i++){
             if(txList[i].miner.substr(0,2)=="0x"){
@@ -39,4 +74,4 @@ async function changeBlock(){
     }
     
 }
-changeBlock();
+// changeBlock();
