@@ -26,7 +26,7 @@ async function changeAddr(){
 }
 // changeAddr();
 async function changeBlock(){
-    let txList = await Block.find()
+    let txList = await Block.find({},{"miner":true}).limit(10000)
     if(txList && txList.length>0){
         for(var i=0;i<txList.length;i++){
             if(txList[i].miner.substr(0,2)=="0x"){
