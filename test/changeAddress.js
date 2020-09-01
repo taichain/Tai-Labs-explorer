@@ -4,8 +4,36 @@ var mongoose = require( 'mongoose' );
 // var Transaction     = mongoose.model( 'Transaction' );
 // var LogEvent     = mongoose.model( 'LogEvent' );
 // var Address     = mongoose.model( 'Address' );
-var Witness = mongoose.model('Witness');
+// var Witness = mongoose.model('Witness');
 var TokenTransfer = mongoose.model('TokenTransfer');
+
+
+async function changeTransfer(){
+    let txList = await TokenTransfer.find()
+    if(txList && txList.length>0){
+        for(var i=0;i<txList.length;i++){
+            let contractAdd=txList[i].contractAdd;
+            let from=txList[i].from;
+            let to=txList[i].to;
+            if(txList[i].contractAdd.substr(0,2)=="0x"){
+                contractAdd = "tit"+txList[i].contractAdd.substr(2)
+            }
+            if(txList[i].from.substr(0,2)=="0x"){
+                from = "tit"+txList[i].from.substr(2)
+            }
+            if(txList[i].to.substr(0,2)=="0x"){
+                to = "tit"+txList[i].to.substr(2)
+            }
+            await Witness.update({"_id":txList[i]._id},{$set:{
+                "from":from,
+                "to":to,
+                "contractAdd":contractAdd
+            }})
+        }
+        console.log("ok---")
+    }
+}
+changeTransfer()
 
 async function changeWitness(){
     let txList = await Witness.find().sort({"balance":-1})
@@ -20,7 +48,7 @@ async function changeWitness(){
         console.log("ok---")
     }
 }
-changeWitness()
+// changeWitness()
 
 async function changeLogEvent(){
     let txList = await LogEvent.find().sort({"balance":-1})
