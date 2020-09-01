@@ -37,6 +37,7 @@ var Web3 = require('web3');
 var web3;
 // var TokenTransferGrabber = require('./grabTokenTransfer');
 var mongoose = require( 'mongoose' );
+const titChange = require('../titChange.js');
 var Block     = mongoose.model( 'Block' );
 var Transaction     = mongoose.model( 'Transaction' );
 var Contract     = mongoose.model( 'Contract' );
@@ -303,7 +304,6 @@ var upsertAddress=function(miner, addrs){
     }
     if(addrs){
         for(let i=0; i<addrs.length; i+=2){
-            // var balance = web3.eth.getBalance(addrs[i]);
             Address.update({"addr":addrs[i]},
                 // {$set:{"balance":balance}},
                 {$inc:{"balance":addrs[i+1]}},
@@ -323,7 +323,7 @@ var upsertAddress=function(miner, addrs){
 }
 
 var updateFromNode = function(addr){
-    var balance = web3.eth.getBalance(addr);
+    var balance = web3.eth.getBalance(titChange.toAddr(addr));
     if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {
@@ -375,15 +375,15 @@ var writeTransactionsToDB = function(blockData) {
                     //console.log("contract create at tx:"+txData.hash);
                     var contractdb = {}
                     var isTokenContract = true;
-                    var Token = ContractStruct.at(receiptData.contractAddress);
+                    var Token = ContractStruct.at(titChange.toAddr(receiptData.contractAddress));
                     if(Token){//write Token to Contract in db
                         try{
-                            contractdb.byteCode = web3.eth.getCode(receiptData.contractAddress);
+                            contractdb.byteCode = web3.eth.getCode(titChange.toAddr(receiptData.contractAddress));
                             contractdb.tokenName = Token.name();
                             contractdb.decimals = Token.decimals();
                             contractdb.symbol = Token.symbol();
                             contractdb.totalSupply = Token.totalSupply();
-                            contractdb.balance = web3.eth.getBalance(receiptData.contractAddress);
+                            contractdb.balance = web3.eth.getBalance(titChange.toAddr(receiptData.contractAddress));
                         }catch(err){
                             isTokenContract = false;
                         }

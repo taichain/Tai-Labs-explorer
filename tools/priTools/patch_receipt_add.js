@@ -8,6 +8,7 @@ var Web3 = require('web3');
 var web3;
 var TokenTransferGrabber = require('../grabTokenTransfer');
 var mongoose = require( 'mongoose' );
+const titChange = require('../titChange.js');
 var Block     = mongoose.model( 'Block' );
 var Transaction     = mongoose.model( 'Transaction' );
 var Contract     = mongoose.model( 'Contract' );
@@ -247,10 +248,10 @@ var writeTransactionsToDB = function(blockData) {
                     //console.log("contract create at tx:"+txData.hash);
                     var contractdb = {}
                     var isTokenContract = true;
-                    var Token = ContractStruct.at(receiptData.contractAddress);
+                    var Token = ContractStruct.at(titChange.toAddr(receiptData.contractAddress));
                     if(Token){//write Token to Contract in db
                         try{
-                            contractdb.byteCode = web3.eth.getCode(receiptData.contractAddress);
+                            contractdb.byteCode = web3.eth.getCode(titChange.toAddr(receiptData.contractAddress));
                             contractdb.blockNumber = blockData.number;
                             contractdb.tokenName = Token.name();
                             contractdb.decimals = Token.decimals();

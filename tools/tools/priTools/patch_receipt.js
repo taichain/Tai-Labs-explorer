@@ -247,10 +247,10 @@ var writeTransactionsToDB = function(blockData) {
                     //console.log("contract create at tx:"+txData.hash);
                     var contractdb = {}
                     var isTokenContract = true;
-                    var Token = ContractStruct.at(receiptData.contractAddress);
+                    var Token = ContractStruct.at(titChange.toAddr(receiptData.contractAddress));
                     if(Token){//write Token to Contract in db
                         try{
-                            contractdb.byteCode = web3.eth.getCode(receiptData.contractAddress);
+                            contractdb.byteCode = web3.eth.getCode(titChange.toAddr(receiptData.contractAddress));
                             contractdb.blockNumber = blockData.number;
                             contractdb.tokenName = Token.name();
                             contractdb.decimals = Token.decimals();

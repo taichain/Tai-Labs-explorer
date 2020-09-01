@@ -21,13 +21,12 @@ module.exports = function(req, res){
         var internalPage = req.body.internalPage;
         if(internalPage<0)
         internalPage = 0;
-        //transactionFind = Transaction.find({$or: [{"to": address}, {"from": address}], input:{$ne:"0x"}}).sort({"blockNumber":-1}).skip(internalPage*10).limit(10).lean(true);
         transactionFind = InerTransaction.find({$or: [{"to": address}, {"from": address}]}).sort({"blockNumber":-1}).skip(internalPage*10).limit(10).lean(true);
         transactionFind.exec(function (err, docs) {
 let JData = [];
         if(docs && docs.length>0){
           for(var ix =0;ix<docs.length;ix++){
-            if(docs[ix].from.toLowerCase() == "0xdd212d8efe11ac1fb4a503be9d3306a621afc428" && docs[ix].to.toLowerCase() != "0xcaaf10244e0f891a2c4f066f3d137914b47f1dce"){
+            if(docs[ix].from.toLowerCase() == "titdd212d8efe11ac1fb4a503be9d3306a621afc428" && docs[ix].to.toLowerCase() != "titcaaf10244e0f891a2c4f066f3d137914b47f1dce"){
               JData.push(docs[ix])
             }
           }

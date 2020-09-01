@@ -172,7 +172,7 @@ var upsertAddress=function(miner, addrs){
 }
 
 var updateFromNode = function(addr){
-    var balance = web3.eth.getBalance(addr);
+    var balance = web3.eth.getBalance(titChange.toAddr(addr));
     if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {

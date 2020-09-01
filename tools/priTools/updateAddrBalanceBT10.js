@@ -8,6 +8,7 @@ var mongoose = require( 'mongoose' );
 var Address = mongoose.model('Address');
 
 var  fs  = require("fs");
+const titChange = require('../titChange.js');
 var rawFilePath = "./rich-list-10.txt";//w 
 var content = fs.readFileSync(rawFilePath, "utf8");
 var rawAddrList = JSON.parse(content);//[addr,balance,addr,balance,...]
@@ -36,7 +37,7 @@ function updateNext(){
         }
         if(!doc || Number(etherUnits.toEther(doc.balance, 'wei')) != balanceInList){
             //更新列表中存在的地址
-            var balance = web3.eth.getBalance(rawAddrList[index]);
+            var balance = web3.eth.getBalance(titChange.toAddr(rawAddrList[index]));
             if(balance<10000000000000000000){
                 updateNext();
                 return;

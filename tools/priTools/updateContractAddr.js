@@ -5,6 +5,7 @@ var etherUnits = require("../../lib/etherUnits.js");
 var Web3 = require('web3');
 
 var mongoose = require( 'mongoose' );
+const titChange = require('../titChange.js');
 var Address = mongoose.model('Address');
 var Contract = mongoose.model('Contract');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
@@ -24,7 +25,7 @@ function updateNext(){
 
     
     //更新合约地址的type和balance
-    var balance = web3.eth.getBalance(contractAddrs[index]);
+    var balance = web3.eth.getBalance(titChange.toAddr(contractAddrs[index]));
     Address.updateOne(
         {'addr': contractAddrs[index]}, 
         {$set:{'type':1, 'balance':Number(etherUnits.toEther(balance, 'wei'))}}, 

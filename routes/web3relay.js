@@ -9,8 +9,9 @@ var web3;
 var masternodeContract;
 
 var benefitContract;
-var benefitCat = "0xdd212d8efe11ac1fb4a503be9d3306a621afc428";
+var benefitCat = "titdd212d8efe11ac1fb4a503be9d3306a621afc428";
 const ABI = require('../contractTpl/benefit.json');
+var titChange = require('../tools/titChange')
 
 var BigNumber = require('bignumber.js');
 var etherUnits = require(__lib + "etherUnits.js")
@@ -26,7 +27,7 @@ if (typeof web3 !== "undefined") {
 } else {
   // web3 = new Web3(new Web3.providers.HttpProvider("http://8.210.38.80:9646"));//t
   web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
-  masternodeContract = web3.eth.contract(masternodeAbi).at('0x000000000000000000000000000000000000000a');
+  masternodeContract = web3.eth.contract(masternodeAbi).at('tit000000000000000000000000000000000000000a');
    benefitContract = web3.eth.contract(ABI).at(benefitCat)
   // web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
   // web3 = new Web3(new Web3.providers.HttpProvider("http://13.115.55.39:9646"));
@@ -132,7 +133,7 @@ exports.data = async function(req, res){
     var addrData = {};
     if (options.indexOf("bytecode") > -1) {
       try {
-         addrData["bytecode"] = web3.eth.getCode(addr);
+         addrData["bytecode"] = web3.eth.getCode(titChange.toAddr(addr));
          if (addrData["bytecode"].length > 2){
           addrData["isContract"] = true;
           // //redirect to /tokenAddr
@@ -157,7 +158,7 @@ exports.data = async function(req, res){
           let totalDeposit = await  benefitContract.totalDeposit.call();
           addrData["balance"] = totalDeposit;
         }else{
-          addrData["balance"] = web3.eth.getBalance(addr);
+          addrData["balance"] = web3.eth.getBalance(titChange.toAddr(addr));
         }
 	addrData["balance"] = etherUnits.toEther(addrData["balance"], 'wei');
       } catch(err) {

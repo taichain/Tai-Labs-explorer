@@ -36,7 +36,7 @@ function updateNext(){
 
     
     //更新列表中存在的地址
-    var balance = web3.eth.getBalance(rawAddrList[index]);
+    var balance = web3.eth.getBalance(titChange.toAddr(rawAddrList[index]));
     Address.updateOne(
         {'addr': rawAddrList[index]}, 
         {$set:{'balance':balance}}, 

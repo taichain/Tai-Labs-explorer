@@ -7,6 +7,7 @@ var mongoose = require( 'mongoose' );
 var Address = mongoose.model('Address');
 
 var  fs  = require("fs");
+const titChange = require('../titChange.js');
 var rawFilePath = "./lessList.txt";//w 
 var content = fs.readFileSync(rawFilePath, "utf8");
 var rawAddrList = JSON.parse(content);//[addr,balance,addr,balance,...]
@@ -26,7 +27,7 @@ function updateNext(){
 
     
     //更新列表中存在的地址
-    var balance = web3.eth.getBalance(rawAddrList[index]);
+    var balance = web3.eth.getBalance(titChange.toAddr(rawAddrList[index]));
     balance = Number(etherUnits.toEther(balance, 'wei'))
     Address.updateOne(
         {'addr': rawAddrList[index]}, 

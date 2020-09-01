@@ -4,6 +4,7 @@ var etherUnits = require("../../lib/etherUnits.js");
 var Web3 = require('web3');
 
 var mongoose = require( 'mongoose' );
+const titChange = require('../titChange.js');
 var Address = mongoose.model('Address');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"));
 var rawAddrList = [];
@@ -37,7 +38,7 @@ function updateNext(){
 
     
     //更新列表中存在的地址
-    var balance = web3.eth.getBalance(rawAddrList[index]);
+    var balance = web3.eth.getBalance(titChange.toAddr(rawAddrList[index]));
     Address.updateOne(
         {'addr': rawAddrList[index]}, 
         {$set:{'balance':Number(etherUnits.toEther(balance, 'wei'))}}, 

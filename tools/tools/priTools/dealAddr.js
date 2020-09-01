@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var Address = mongoose.model('Address');
 var Transaction = mongoose.model('Transaction');
 var Contract = mongoose.model('Contract');
+var titChange = require('../../titChange')
 
 //==================config===============
 var startBlockNumber = -1;//上次采集高度
@@ -88,7 +89,7 @@ function nextInsertBatch(){
             break;
         }
         var addrItem = {"addr":addressItems[itemIndex], "type":0, "balance":0};
-        addrItem.balance = web3.eth.getBalance(addrItem.addr);
+        addrItem.balance = web3.eth.getBalance(titChange.toAddr(addrItem.addr));
         if(contractAddrs.indexOf(addrItem.addr)>-1){//contract addr
             addrItem.type = 1;
         }else if(masternodeAddrs.indexOf(addrItem.addr>-1)){

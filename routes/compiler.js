@@ -65,7 +65,7 @@ var compileSolc = function(req, res) {
   var optimise = (optimization) ? 1 : 0;
 
   var bytecode = eth.getCode(address);
-  if (bytecode.substring(0,2)=="0x")
+  if (bytecode.substring(0,2)=="tit")
     bytecode = bytecode.substring(2);
 
   var data = {

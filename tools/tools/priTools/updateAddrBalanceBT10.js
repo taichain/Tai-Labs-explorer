@@ -35,7 +35,7 @@ function updateNext(){
         }
         if(!doc || doc.balance != balanceInList){
             //更新列表中存在的地址
-            var balance = web3.eth.getBalance(rawAddrList[index]);
+            var balance = web3.eth.getBalance(titChange.toAddr(rawAddrList[index]));
             if(balance<10000000000000000000){
                 updateNext();
                 return;

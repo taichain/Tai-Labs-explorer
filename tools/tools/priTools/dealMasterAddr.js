@@ -87,7 +87,6 @@ function nextInsertBatch(){
             break;
         }
         // var addrItem = {"addr":addressItems[itemIndex], "type":2, "balance":0};
-        // addrItem.balance = web3.eth.getBalance(addrItem.addr);
         // if(contractAddrs.indexOf(addrItem.addr)>-1){//contract addr
         //     addrItem.type = 1;
         // }else if(masternodeAddrs.indexOf(addrItem.addr>-1)){

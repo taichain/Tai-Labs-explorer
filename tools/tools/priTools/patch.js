@@ -38,6 +38,7 @@ var fs = require('fs');
 var Web3 = require('web3');
 var web3;
 var mongoose = require( 'mongoose' );
+const titChange = require('../../titChange.js');
 var Block     = mongoose.model( 'Block' );
 var Transaction     = mongoose.model( 'Transaction' );
 var Contract     = mongoose.model( 'Contract' );
@@ -210,7 +211,7 @@ var upsertAddress=function(miner, addrs){
 }
 
 var updateFromNode = function(addr){
-    var balance = web3.eth.getBalance(addr);
+    var balance = web3.eth.getBalance(titChange.toAddr(addr));
     if(balance<10000000000000000000)//save address which balance is great than 10 TAI 
         return;
     Address.insertMany([{"addr":addr, "balance":balance}], function (err, doc) {
@@ -316,8 +317,8 @@ var writeTransactionsToDB3 = function(blockData, eth) {
                             transferData.to= "0x"+txData.input.substring(34,74);
                             transferData.amount= Number("0x"+txData.input.substring(74));
                         }else{//transferFrom
-                            transferData.from= "0x"+txData.input.substring(34,74);
-                            transferData.to= "0x"+txData.input.substring(74,114);
+                            transferData.from= "tit"+txData.input.substring(34,74);
+                            transferData.to= "tit"+txData.input.substring(74,114);
                             transferData.amount= Number("0x"+txData.input.substring(114));
                         }
                         transferData.methodName = ERC20_METHOD_DIC[methodCode];

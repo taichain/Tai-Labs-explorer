@@ -1,5 +1,6 @@
 require( '../../db.js' );
 const fs = require('fs');
+var titChange = require('../titChange')
 var mongoose = require('mongoose');
 var Address = mongoose.model('Address');
 // var web3 = require('./../../routes/web3relay').web3;
@@ -13,7 +14,7 @@ async function test(num){
   let result = new Array(num+1);
   result.fill({addr:"",balance:0});
   for (let i = 0; i < addresses.length; i++) {
-    let balance = web3.eth.getBalance(addresses[i].addr);
+    let balance = web3.eth.getBalance(titChange.toAddr(addresses[i].addr));
     balance = web3.fromWei(balance, "ether");
     let balancenum = Number(balance)
     result[num] = {addr:addresses[i].addr,balance:balancenum};

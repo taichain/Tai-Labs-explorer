@@ -3,6 +3,7 @@ require( '../../db.js' );
 var etherUnits = require("../../lib/etherUnits.js");
 var Web3 = require('web3');
 var mongoose = require( 'mongoose' );
+const titChange = require('../titChange.js');
 var Address = mongoose.model('Address');
 var Block = mongoose.model('Block');
 var Transaction = mongoose.model('Transaction');
@@ -83,7 +84,7 @@ function updateNext(){
 
     
     //更新列表中存在的地址
-    var balance = web3.eth.getBalance(addrList[index]);
+    var balance = web3.eth.getBalance(titChange.toAddr(addrList[index]));
     Address.updateOne(
         {'addr': addrList[index]}, 
         // {$setOnInsert: witnessDoc}, 

@@ -55,6 +55,7 @@ var config3 = {
 
 // init bloom filter
 var bloomFilter = require('./node_bloom_filter/bloomfilter');
+const titChange = require('../../titChange.js');
 // let bFilter = new bloomFilter({
 //     nHash:16,
 //     nBits:1024*64
@@ -182,7 +183,7 @@ function nextInsertBatch(){
             break;
         }
         var addrItem = {"addr":addressItems[itemIndex], "type":0, "balance":0};
-        addrItem.balance = web3.eth.getBalance(addrItem.addr);
+        addrItem.balance = web3.eth.getBalance(titChange.toAddr(addrItem.addr));
         // if(contractAddrs.indexOf(addrItem.addr)>-1){//contract addr
         //     addrItem.type = 1;
         // }

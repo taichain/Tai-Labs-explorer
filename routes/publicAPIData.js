@@ -57,8 +57,8 @@ function regAddress(address){
        address = address.toLowerCase();
        address = address.replace(/(^\s*)|(\s*$)/g, "");
        address = address.replace(/\"/g, "");
-       if(address.indexOf("0x")!=0)
-         address = "0x"+address;
+       if(address.indexOf("tit")!=0)
+         address = "tit"+address;
    }
    return address;
 }
@@ -155,7 +155,7 @@ module.exports = function(req, res){
           address = requestParam(req, "address");
           address = regAddress(address);
           if(address.length <= 18){
-            if(address.length==18 && address.indexOf("0x")==0){
+            if(address.length==18 && address.indexOf("tit")==0){
               address = address.substr(2);
             }
            Witness.findOne({"witness":address},"miner").exec((err, doc)=>{
@@ -211,7 +211,7 @@ module.exports = function(req, res){
           var pageSize = requestParamInt(req, "pageSize", 10);
           if(pageSize>100)
             pageSize = 100;
-          transactionFind = Transaction.find({$or: [{"from": address}, {"to": address}], input:{$ne:"0x"}}).skip(transactionPage*pageSize).limit(pageSize).lean(true);
+          transactionFind = Transaction.find({$or: [{"from": address}, {"to": address}], input:{$ne:"tit"}}).skip(transactionPage*pageSize).limit(pageSize).lean(true);
           transactionFind.exec(function (err, docs) {
             if(err)
               responseFail(res, respData, err.toString());

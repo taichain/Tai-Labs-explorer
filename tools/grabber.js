@@ -30,6 +30,7 @@
 
 require( '../db.js' );
 var etherUnits = require("../lib/etherUnits.js");
+var titChange = require('./titChange')
 var BigNumber = require('bignumber.js');
 
 
@@ -309,7 +310,6 @@ var upsertAddress=function(miner, addrs){
     }
     if(addrs){
         for(let i=0; i<addrs.length; i+=2){
-            // var balance = web3.eth.getBalance(addrs[i]);
             Address.update({"addr":addrs[i]},
                 // {$set:{"balance":balance}},
                 {$inc:{"balance":Number(addrs[i+1])}},
@@ -329,7 +329,7 @@ var upsertAddress=function(miner, addrs){
 }
 
 var updateFromNode = function(addr){
-    var balance = web3.eth.getBalance(addr);
+    var balance = web3.eth.getBalance(titChange.toAddr(addr));
     if(balance<10000000000000000000)//save address which balance is great than 10 TAI
         return;
     Address.insertMany([{"addr":addr, "balance":Number(etherUnits.toEther(balance, 'wei'))}], function (err, doc) {
@@ -343,7 +343,8 @@ var updateFromNode = function(addr){
 /**
     Break transactions out of blocks and write to DB
 **/
-var pingTXAddr = "0x000000000000000000000000000000000000000a";
+var pingTXAddr2 = "tit000000000000000000000000000000000000000a";
+
 var writeTransactionsToDB = function(blockData) {
     var bulkOps = [];
     var innerTxs = null;
@@ -383,15 +384,15 @@ var writeTransactionsToDB = function(blockData) {
                     //console.log("contract create at tx:"+txData.hash);
                     var contractdb = {}
                     var isTokenContract = true;
-                    var Token = ContractStruct.at(receiptData.contractAddress);
+                    var Token = ContractStruct.at(titChange.toAddr(receiptData.contractAddress));
                     if(Token){//write Token to Contract in db
                         try{
-                            contractdb.byteCode = web3.eth.getCode(receiptData.contractAddress);
+                            contractdb.byteCode = web3.eth.getCode(titChange.toAddr(receiptData.contractAddress));
                             contractdb.tokenName = Token.name();
                             contractdb.decimals = Token.decimals();
                             contractdb.symbol = Token.symbol();
                             contractdb.totalSupply = Token.totalSupply();
-                            contractdb.balance = web3.eth.getBalance(receiptData.contractAddress);
+                            contractdb.balance = web3.eth.getBalance(titChange.toAddr(receiptData.contractAddress));
                         }catch(err){
                             isTokenContract = false;
                         }
@@ -438,11 +439,11 @@ var writeTransactionsToDB = function(blockData) {
                     if(ERC20_METHOD_DIC[methodCode]=="transfer" || ERC20_METHOD_DIC[methodCode]=="transferFrom"){
                         if(ERC20_METHOD_DIC[methodCode]=="transfer"){//token transfer transaction
                             transferData.from= txData.from;
-                            transferData.to= "0x"+txData.input.substring(34,74);
+                            transferData.to= "tit"+txData.input.substring(34,74);
                             transferData.amount= Number("0x"+txData.input.substring(74));
                         }else{//transferFrom
-                            transferData.from= "0x"+txData.input.substring(34,74);
-                            transferData.to= "0x"+txData.input.substring(74,114);
+                            transferData.from= "tit"+txData.input.substring(34,74);
+                            transferData.to= "tit"+txData.input.substring(74,114);
                             transferData.amount= Number("0x"+txData.input.substring(114));
                         }
                         transferData.methodName = ERC20_METHOD_DIC[methodCode];
@@ -511,7 +512,7 @@ var writeTransactionsToDB = function(blockData) {
             }
 
             //drop out masterNode ping transactions
-            if(!(txData.to == pingTXAddr && txData.value == "0" &&
+            if(!(txData.to == pingTXAddr2 && txData.value == "0" &&
                 (txData.gasUsed==34957||txData.gasUsed==49957||txData.gasUsed==34755||txData.gasUsed==19755||txData.gasUsed==44550))
                 ){
                 if(Number(txData.value)>0){

@@ -3,6 +3,7 @@
  */
 require( '../../db.js' );
 var etherUnits = require("../../lib/etherUnits.js");
+var titChange = require('../titChange')
 var Web3 = require('web3');
 var web3;
 var mongoose = require('mongoose');
@@ -89,7 +90,7 @@ function nextInsertBatch(){
             break;
         }
         var addrItem = {"addr":addressItems[itemIndex], "type":0, "balance":0};
-        addrItem.balance = web3.eth.getBalance(addrItem.addr);
+        addrItem.balance = web3.eth.getBalance(titChange.toAddr(addrItem.addr));
         addrItem.balance = Number(etherUnits.toEther(addrItem.balance, 'wei'));
         if(contractAddrs.indexOf(addrItem.addr)>-1){//contract addr
             addrItem.type = 1;
