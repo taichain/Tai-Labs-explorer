@@ -50,12 +50,14 @@ BlocksApp.controller('MainController', ['$scope', '$location', function($scope, 
         $scope.form.searchInput="";
         $scope.form.searchForm.$setPristine();
         $scope.form.searchForm.$setUntouched();
+        console.log("search--",search)
+        console.log("isAddress(search)--",isAddress(search))
         if (isAddress(search)) 
             $location.path("/addr/" + search);
         else if(search.length==16)//master node address
             $location.path("/masternode/" + search);
         else if(search.length==18){//master node address
-            if(search.indexOf("0x")==0){
+            if(search.indexOf("0x")==0 ||search.indexOf("tit")==0){
                 $location.path("/masternode/" + search.substr(2));
             }
         }

@@ -58,7 +58,7 @@ function regAddress(address){
        address = address.replace(/(^\s*)|(\s*$)/g, "");
        address = address.replace(/\"/g, "");
        if(address.substr(0,2)!="0x" || address.substr(0,3)!="tit"){
-          address = "0x"+address;
+          address = "0x"+address.substr(3);
        }
        if(address.substr(0,3)=="tit"){
          address = "0x"+address.substr(3)
@@ -124,7 +124,7 @@ module.exports = function(req, res){
       methodName = req.query.methodName;
       if(!methodName)
         methodName = req.query.action;
-
+      
       switch(methodName){
         case totalETZ:
           totalBlockNum = eth.blockNumber;
@@ -160,6 +160,7 @@ module.exports = function(req, res){
         case balance:
           address = requestParam(req, "address");
           address = regAddress(address);
+          console.log("address---",address)
           if(address.length <= 18){
             if(address.length==18 && address.indexOf("0x")==0){
               address = address.substr(2);

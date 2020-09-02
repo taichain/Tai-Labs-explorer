@@ -83,8 +83,8 @@ var getAddr = function(req, res){
   var limit = parseInt(req.body.length);
   var start = parseInt(req.body.start);
   var data = { draw: parseInt(req.body.draw), recordsFiltered: count, recordsTotal: count };
-
   addr = titChange.checkTit(addr)
+
   // Transaction.count({ $or: [{"to": addr}, {"from": addr}] }).exec().then(function(recordCount)
   //   {
       data.recordsFiltered = totalTX;
