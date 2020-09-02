@@ -57,14 +57,12 @@ function regAddress(address){
        address = address.toLowerCase();
        address = address.replace(/(^\s*)|(\s*$)/g, "");
        address = address.replace(/\"/g, "");
-       if(address.substr(0,2)!="0x" || address.substr(0,3)!="tit"){
-          address = "0x"+address.substr(3);
+       if(address.length == 40 && address.substr(0,2)!="0x"){
+          address = "0x"+address;
        }
        if(address.substr(0,3)=="tit"){
          address = "0x"+address.substr(3)
-       }
-
-         
+       } 
    }
    return address;
 }
