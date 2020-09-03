@@ -43,6 +43,8 @@ else
 // var newBlocks = web3.eth.filter("latest");
 // var newTxs = web3.eth.filter("pending");
 exports.getTX = function(txHash){
+  txHash = titChange.toAddr(txHash)
+  console.log("txHash--",txHash)
   if(!txHash)
     return null;
   if(txHash.indexOf('0x')!=0){

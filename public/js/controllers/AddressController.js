@@ -6,9 +6,12 @@ angular.module('BlocksApp').controller('AddressController', function($stateParam
     var activeTab = $location.url().split('#');
     if (activeTab.length > 1)
       $scope.activeTab = activeTab[1];
-
-    $rootScope.$state.current.data["pageSubTitle"] = $stateParams.hash;
-    $scope.addrHash = $stateParams.hash;
+    let new_hash = $stateParams.hash;
+    if(new_hash && new_hash.indexOf("0x")==0){
+      new_hash = "tit"+new_hash.substr(2)
+    }
+    $rootScope.$state.current.data["pageSubTitle"] = new_hash;
+    $scope.addrHash = new_hash
     $scope.addr = {"balance": 0, "count": 0};
     
     //get address balance

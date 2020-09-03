@@ -3,6 +3,8 @@
 // var BigNumber = require('bignumber.js');
 var web3relay = require('./web3relay');
 var mongoose = require( 'mongoose' );
+var filters = require('./filters');
+const titChange = require('../tools/titChange');
 var Transaction = mongoose.model('Transaction');
 var InerTransaction = mongoose.model('InerTransaction');
 
@@ -17,14 +19,13 @@ module.exports = function(req, res){
       var action = req.body.action;
       var address = req.body.address;
       var transactionFind;
-      
       if(action=="internalTX"){
         var internalPage = req.body.internalPage;
         if(internalPage<0)
         internalPage = 0;
         transactionFind = InerTransaction.find({$or: [{"to": address}, {"from": address}]}).sort({"blockNumber":-1}).skip(internalPage*10).limit(10).lean(true);
         transactionFind.exec(function (err, docs) {
-let JData = [];
+        let JData = [];
         if(docs && docs.length>0){
           for(var ix =0;ix<docs.length;ix++){
             if(docs[ix].from.toLowerCase() == "titdd212d8efe11ac1fb4a503be9d3306a621afc428" && docs[ix].to.toLowerCase() != "titcaaf10244e0f891a2c4f066f3d137914b47f1dce"){
@@ -50,17 +51,13 @@ let JData = [];
         });
       }else{//some tx
         var txHash = req.body.tx;
-        if(txHash && txHash.indexOf('0x')!=0)
-          txHash = '0x'+txHash;
-        //check TX exist in node
-        /*
-        var txData = web3relay.getTX(txHash);
-        if(txData==null){
-          res.write("{}");
-          res.end();
-          return;
+        if(txHash && txHash.indexOf('tit')==0){
+          txHash = '0x'+txHash.substr(3);
+        }else if(txHash && txHash.indexOf("0x")!=0){
+          txHash = '0x'+txHash
         }
-        */
+          
+        
 
         TransactionFind = Transaction.findOne({hash:txHash}).lean(true);
         TransactionFind.exec(function (err, doc) {
@@ -81,6 +78,7 @@ let JData = [];
             if(blockData){
               txData.timestamp = blockData.timestamp;
               txData.witness = blockData.witness;
+              
             }
             txData.gasUsed = waiting;
             res.write(JSON.stringify(txData));
@@ -155,7 +153,12 @@ let JData = [];
               doc.tokenName = tokenName;
               doc.contractLable = contractLable;
               doc.contractLink = contractLink;
-              
+              doc.from = titChange.toTit(doc.from)
+              doc.to = titChange.toTit(doc.to)
+              doc.blockHash = titChange.toTit(doc.blockHash)
+              doc.hash = titChange.toTit(doc.hash);
+              doc.contractAddr = titChange.toTit(doc.contractAddr);
+              doc.input = titChange.toTit(doc.input)
               respData = JSON.stringify(doc);
               res.write(respData);
               res.end();
@@ -164,6 +167,12 @@ let JData = [];
             doc.tokenName = tokenName;
             doc.contractLable = contractLable;
             doc.contractLink = contractLink;
+            doc.from = titChange.toTit(doc.from)
+            doc.to = titChange.toTit(doc.to)
+            doc.blockHash = titChange.toTit(doc.blockHash)
+            doc.hash = titChange.toTit(doc.hash);
+            doc.contractAddr = titChange.toTit(doc.contractAddr);
+            doc.input = titChange.toTit(doc.input)
             respData = JSON.stringify(doc);
             res.write(respData);
             res.end();

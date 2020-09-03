@@ -163,6 +163,8 @@ var getBlock = function(req, res) {
 
 var getTx = function(req, res){
   var tx = req.body.tx.toLowerCase();
+  console.log("tx--",tx)
+  tx = titChange.toAddr(tx)
   var txFind = Block.findOne( { "transactions.hash" : tx }, "transactions timestamp").lean(true);
   txFind.exec(function (err, doc) {
     if (!doc){

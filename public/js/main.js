@@ -61,8 +61,11 @@ BlocksApp.controller('MainController', ['$scope', '$location', function($scope, 
                 $location.path("/masternode/" + search.substr(2));
             }
         }
-        else if (isTransaction(search))
+        else if (isTransaction(search)){
+            console.log("search1---",search)
             $location.path("/tx/" + search);
+        }
+            
         else if (!isNaN(search))
             $location.path("/block/" + search);
         else 
@@ -99,8 +102,11 @@ BlocksApp.controller('HeaderController', ['$scope', '$location', function($scope
                 $location.path("/masternode/" + search.substr(2));
             }
         }
-        else if (isTransaction(search))
+        else if (isTransaction(search)){
+            console.log("search---",search)
             $location.path("/tx/" + search);
+        }
+            
         else if (!isNaN(search))
             $location.path("/block/" + search);
         else 

@@ -1,5 +1,5 @@
 function toAddr(addr){
-    if(addr && addr.substr(0,3)=='tit'){
+    if(addr && addr.indexOf("tit")==0){
         return "0x"+addr.substr(3);
     }
     return addr

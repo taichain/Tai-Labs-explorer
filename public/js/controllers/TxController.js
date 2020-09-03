@@ -3,9 +3,12 @@ angular.module('BlocksApp').controller('TxController', function($stateParams, $r
         // initialize core components
         App.initAjax();
     });
-
-    $rootScope.$state.current.data["pageSubTitle"] = $stateParams.hash;
-    $scope.hash = $stateParams.hash;
+    let new_hash = $stateParams.hash;
+    if(new_hash && new_hash.indexOf("0x")==0){
+      new_hash = "tit"+new_hash.substr(2)
+    }
+    $rootScope.$state.current.data["pageSubTitle"] = new_hash;
+    $scope.hash = new_hash;
     $scope.tx = {"hash": $scope.hash};
 
     //fetch web3 stuff
