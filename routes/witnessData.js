@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 var mongoose = require( 'mongoose' );
 var Block = mongoose.model('Block');
+var filters = require('./filters')
 var Witness = mongoose.model('Witness');
+var titChange = require('../tools/titChange')
 var web3 = require("./web3relay").web3;
 var { masternodeContract } = require('./web3relay');
 var oneDaySeconds = 86400//24*60*60;//seconds of one day
@@ -10,7 +12,6 @@ module.exports = function(req, res){
   var respData = "";
   var action = req.body.action;
   var witness = req.body.witness;
-
   if(action == "blocks"){
     try{
       var resultData={"blocks":null, "page":0};
@@ -25,6 +26,7 @@ module.exports = function(req, res){
           if(err)
             resultData.blocks=[];
           else
+            docs = filters.filterBlocks(docs)
             resultData.blocks=docs;
           respData = JSON.stringify(resultData);
           res.write(respData);

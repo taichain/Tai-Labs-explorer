@@ -19037,7 +19037,7 @@ angular.module('BlocksApp').controller('WitnessController', function($stateParam
     var witness = $stateParams.witness;
     if(witness.indexOf("0x")==0)
       witness = witness.substr(2);
-    $rootScope.$state.current.data["pageSubTitle"] = '0x'+witness;
+    $rootScope.$state.current.data["pageSubTitle"] = 'tit'+witness;
     $scope.witness = witness;
     $scope.page = 0;
 

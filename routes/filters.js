@@ -10,7 +10,7 @@ function filterTX(txs, value) {
     tx.from = titChange.toTit(tx.from)
     tx.to = titChange.toTit(tx.to)
     //return [tx.hash, tx.blockNumber, tx.from, tx.to, etherUnits.toEther(new BigNumber(tx.value), 'ether'), tx.gas, tx.timestamp, tx.status]
-    return [tx.hash, tx.blockNumber, tx.from, tx.to, String(tx.value), tx.gas, tx.timestamp, tx.status]
+    return [titChange.toTit(tx.hash), tx.blockNumber, titChange.toTit(tx.from), titChange.toTit(tx.to), String(tx.value), tx.gas, tx.timestamp, tx.status]
   })
 }
 
@@ -53,6 +53,13 @@ function filterBlock(block, field, value) {
     tx.timestamp = block.timestamp; 
     tx.from = titChange.toTit(tx.from)
     tx.to = titChange.toTit(tx.to)
+    tx.hash = titChange.toTit(tx.hash)
+    // tx.parentHash = titChange.toTit(tx.parentHash);
+    // tx.sha3Uncles = titChange.toTit(tx.sha3Uncles);
+    // tx.stateRoot = titChange.toTit(tx.stateRoot);
+    // tx.transactionsRoot = titChange.toTit(tx.transactionsRoot);
+    // tx.hash = titChange.toTit(tx.hash);
+    // tx.extraData = titChange.toTit(tx.extraData)
   return tx;
 }
 
@@ -61,7 +68,13 @@ function filterBlocks(blocks) {
   if (blocks.constructor !== Array) {
     var b = blocks;
     b.miner = titChange.toTit(b.miner)
-    b.extraData = hex2ascii(blocks.extraData);
+    b.parentHash = titChange.toTit(b.parentHash);
+    b.sha3Uncles = titChange.toTit(b.sha3Uncles);
+    b.stateRoot = titChange.toTit(b.stateRoot);
+    b.transactionsRoot = titChange.toTit(b.transactionsRoot);
+    b.hash = titChange.toTit(b.hash);
+    b.extraData = titChange.toTit(b.extraData)
+    b.extraData = hex2ascii(b.extraData);
     if(b.extraData && b.extraData.length>5){
       b.extraData = b.extraData.charCodeAt(3)+"."+b.extraData.charCodeAt(4)+"."+b.extraData.charCodeAt(5);
     }
@@ -71,6 +84,13 @@ function filterBlocks(blocks) {
     var b = block;
     b.extraData = hex2ascii(block.extraData);
     b.miner = titChange.toTit(b.miner)
+    b.parentHash = titChange.toTit(b.parentHash);
+    b.sha3Uncles = titChange.toTit(b.sha3Uncles);
+    b.stateRoot = titChange.toTit(b.stateRoot);
+    b.transactionsRoot = titChange.toTit(b.transactionsRoot);
+    b.hash = titChange.toTit(b.hash);
+    b.extraData = titChange.toTit(b.extraData)
+    b.extraData = hex2ascii(b.extraData);
     if(b.extraData && b.extraData.length>5){
       b.extraData = b.extraData.charCodeAt(3)+"."+b.extraData.charCodeAt(4)+"."+b.extraData.charCodeAt(5);
     }
@@ -81,25 +101,29 @@ function filterBlocks(blocks) {
 /* stupid datatable format */
 function datatableTX(txs) {
   return txs.map(function(tx){
-    return [tx.hash, tx.blockNumber, tx.from, tx.to, 
+    return [titChange.toTit(tx.hash), tx.blockNumber, titChange.toTit(tx.from), titChange.toTit(tx.to), 
             etherUnits.toEther(tx.value, 'wei'), tx.gas, tx.timestamp]
   })
 }
 
 function internalTX(txs) {
   return txs.map(function(tx){
-    return [tx.transactionHash, tx.blockNumber, tx.action.from, tx.action.to, 
+    return [titChange.toTit(tx.transactionHash), tx.blockNumber, titChange.toTit(tx.action.from), titChange.toTit(tx.action.to), 
             etherUnits.toEther(tx.action.value), 'wei', tx.action.gas, tx.timestamp]
   })
 }
 
 
 var hex2ascii = function (hexIn) {
+  if(hexIn){
     var hex = hexIn.toString();
     var str = '';
     for (var i = 0; i < hex.length; i += 2)
         str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
     return str;
+  }
+    return null
+    
 }
 
 module.exports = {

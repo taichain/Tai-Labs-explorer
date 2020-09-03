@@ -17,6 +17,7 @@ module.exports = function(req, res){
       var action = req.body.action;
       var address = req.body.address;
       var transactionFind;
+      
       if(action=="internalTX"){
         var internalPage = req.body.internalPage;
         if(internalPage<0)

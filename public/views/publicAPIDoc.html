@@ -85,7 +85,7 @@
             <strong>Get TAI Balance for multiple Addresses in a single call</strong>
                     <ul style="list-style-type: none">
                     <li>
-                    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=balance&action=balancemulti&address=titddbd2b932c763ba5b1b7ae3b362eac3e8d40121a,0x63a9975ba31b0b9626b34300f7f627147df1f526,0x198ef1ec325a96cc354c7266a038be8b5c558f67&tag=latest&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=account&amp;action=balancemulti&amp;address=titddbd2b932c763ba5b1b7ae3b362eac3e8d40121a,0x63a9975ba31b0b9626b34300f7f627147df1f526,0x198ef1ec325a96cc354c7266a038be8b5c558f67&amp;tag=latest&amp;apikey=YourApiKeyToken</a></pre>
+                    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=balance&action=balancemulti&address=titddbd2b932c763ba5b1b7ae3b362eac3e8d40121a,tit63a9975ba31b0b9626b34300f7f627147df1f526,tit198ef1ec325a96cc354c7266a038be8b5c558f67&tag=latest&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=account&amp;action=balancemulti&amp;address=titddbd2b932c763ba5b1b7ae3b362eac3e8d40121a,tit63a9975ba31b0b9626b34300f7f627147df1f526,tit198ef1ec325a96cc354c7266a038be8b5c558f67&amp;tag=latest&amp;apikey=YourApiKeyToken</a></pre>
                     </li>
                     <li>Separate addresses by comma, up to a maxium of 20 accounts in a single batch</li>
                     </ul>
@@ -156,7 +156,7 @@
         contractABI = JSON.parse(data.result);
         if (contractABI != ''){
             var MyContract = web3.eth.contract(contractABI);
-            var myContractInstance = MyContract.at("0xc01fbdf458041359a8eeaf03d9991dd8fd8dbd6f");
+            var myContractInstance = MyContract.at("titc01fbdf458041359a8eeaf03d9991dd8fd8dbd6f");
             var result = myContractInstance.getBuyPrice();
             console.log("result : " + result);
         } else {
@@ -188,7 +188,7 @@
     <br>
     </p><ul style="list-style-type: none">
     <li>
-    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=transaction&action=getstatus&txhash=0x15f8e5ea1079d9a0bb04a4c58ae5fe7654b5b2b4463375ff7ffb490aa0032f3a&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=transaction&amp;action=getstatus&amp;txhash=0x15f8e5ea1079d9a0bb04a4c58ae5fe7654b5b2b4463375ff7ffb490aa0032f3a&amp;apikey=YourApiKeyToken</a></pre>
+    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=transaction&action=getstatus&txhash=tit15f8e5ea1079d9a0bb04a4c58ae5fe7654b5b2b4463375ff7ffb490aa0032f3a&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=transaction&amp;action=getstatus&amp;txhash=tit15f8e5ea1079d9a0bb04a4c58ae5fe7654b5b2b4463375ff7ffb490aa0032f3a&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <p></p>
@@ -200,7 +200,7 @@
     <br>
     </p><ul style="list-style-type: none">
     <li>
-    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=transaction&action=gettxreceiptstatus&txhash=0x513c1ba0bebf66436b5fed86ab668452b7805593c05073eb2d51d3a52f480a76&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=transaction&amp;action=gettxreceiptstatus&amp;txhash=0x513c1ba0bebf66436b5fed86ab668452b7805593c05073eb2d51d3a52f480a76&amp;apikey=YourApiKeyToken</a></pre>
+    <pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=transaction&action=gettxreceiptstatus&txhash=tit513c1ba0bebf66436b5fed86ab668452b7805593c05073eb2d51d3a52f480a76&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=transaction&amp;action=gettxreceiptstatus&amp;txhash=tit513c1ba0bebf66436b5fed86ab668452b7805593c05073eb2d51d3a52f480a76&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br>
@@ -253,7 +253,7 @@
         <li>[Optional Parameters] toBlock: logs in block is little than or equle toBlock</li>
         <li>[Optional Parameters] topics: topics filter. multi topic separate with comma. <br>
             such as: ...&topics=value0,,value2&... this exprission will fetch logs that topic0 is value0 and topic2 is value2.<br>
-        each value's length is 66(contain:0x)</li>
+        each value's length is 66(contain:tit)</li>
         <li>[Optional Parameters] topic_oprs: topics operation. multi operation separate with comma. <br>
             this parameters explain the relation between the topics above.<br>
             such as: ...&topic_oprs=0_and,1_2_or... this exprission means that topics0=value0 && (topics1=value1 || topics2=value2).<br>
@@ -279,7 +279,7 @@
     <hr>
 
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=logs&action=getLogs&address=tit013b6e279989aa20819a623630fe678c9f43a48f&&fromBlock=6601088&topic_oprs=0_and,1_2_or&topics=0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef,0x000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89,0x000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89&returnFilters=timestamp,topics,-_id&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=logs&action=getLogs&address=tit013b6e279989aa20819a623630fe678c9f43a48f&&fromBlock=6601088&topic_oprs=0_and,1_2_or&topics=0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef,0x000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89,0x000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89&returnFilters=timestamp,topics,-_id&apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=logs&action=getLogs&address=tit013b6e279989aa20819a623630fe678c9f43a48f&&fromBlock=6601088&topic_oprs=0_and,1_2_or&topics=titddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef,tit000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89,tit000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89&returnFilters=timestamp,topics,-_id&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=logs&action=getLogs&address=tit013b6e279989aa20819a623630fe678c9f43a48f&&fromBlock=6601088&topic_oprs=0_and,1_2_or&topics=titddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef,tit000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89,tit000000000000000000000000D0011bC3b4b2354517529fEF2310E1b5326E0c89&returnFilters=timestamp,topics,-_id&apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br>
@@ -292,7 +292,7 @@
     <br>
     <p>
     The following are the limited list of supported Proxied APIs for Geth available through TAIscan.
-    For the list of the parameters and descriptions please see <a href="//github.com/ethereum/wiki/wiki/JSON-RPC" target="_blank">https://github.com/ethereum/wiki/wiki/JSON-RPC</a>. Parameters provided should be named like in the examples below. For compatibility with Parity, please prefix all hex strings with "0x" </p><hr>
+    For the list of the parameters and descriptions please see <a href="//github.com/ethereum/wiki/wiki/JSON-RPC" target="_blank">https://github.com/ethereum/wiki/wiki/JSON-RPC</a>. Parameters provided should be named like in the examples below. For compatibility with Parity, please prefix all hex strings with "tit" </p><hr>
     <strong>eth_blockNumber</strong><br>
     Returns the number of most recent block<br><br>
     <ul style="list-style-type:none">
@@ -317,14 +317,14 @@
     <strong>eth_getTransactionByHash</strong><br>
     Returns the information about a transaction requested by transaction hash<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionByHash&txhash=0x1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionByHash&amp;txhash=0x1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionByHash&txhash=tit1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionByHash&amp;txhash=tit1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br><br>
     <strong>eth_getTransactionByBlockNumberAndIndex</strong><br>
     Returns information about a transaction by block number and transaction index position<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionByBlockNumberAndIndex&blockNumber=1267471&index=0x0&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionByBlockNumberAndIndex&amp;blockNumber=1267471&amp;index=0x0&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionByBlockNumberAndIndex&blockNumber=1267471&index=tit0&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionByBlockNumberAndIndex&amp;blockNumber=1267471&amp;index=tit0&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br><br>
@@ -338,7 +338,7 @@
     <strong>eth_sendRawTransaction</strong><br>
     Creates new message call transaction or a contract creation for signed transactions<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_sendRawTransaction&hex=0xf904808000831cfde080&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_sendRawTransaction&amp;hex=0xf904808000831cfde080&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_sendRawTransaction&hex=titf904808000831cfde080&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_sendRawTransaction&amp;hex=titf904808000831cfde080&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     (Replace the hex value with your raw hex encoded transaction that you want to send.<br>Send as a POST request, if your hex code is particularly long)
     </ul>
@@ -346,14 +346,14 @@
     <strong>eth_getTransactionReceipt</strong><br>
     Returns the receipt of a transaction by transaction hash<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionReceipt&txhash=0x1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionReceipt&amp;txhash=0x1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getTransactionReceipt&txhash=tit1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getTransactionReceipt&amp;txhash=tit1e2910a262b1008d0616a0beb24c1a491d78771baa54a33e66065e03b1f46bc1&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br><br>
     <strong>eth_call</strong><br>
     Executes a new message call immediately without creating a transaction on the block chain<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_call&to=0xAEEF46DB4855E25702F8237E8f403FddcaF931C0&data=0x70a08231000000000000000000000000e16359506c028e51f16be38986ec5746251e9724&amp;blockNumber=latest&amp;apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_call&amp;to=0xAEEF46DB4855E25702F8237E8f403FddcaF931C0&amp;data=0x70a08231000000000000000000000000e16359506c028e51f16be38986ec5746251e9724&amp;blockNumber=latest&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_call&to=titAEEF46DB4855E25702F8237E8f403FddcaF931C0&data=tit70a08231000000000000000000000000e16359506c028e51f16be38986ec5746251e9724&amp;blockNumber=latest&amp;apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_call&amp;to=titAEEF46DB4855E25702F8237E8f403FddcaF931C0&amp;data=tit70a08231000000000000000000000000e16359506c028e51f16be38986ec5746251e9724&amp;blockNumber=latest&amp;apikey=YourApiKeyToken</a></pre>
      </li>
     </ul>
     <br><br>
@@ -367,7 +367,7 @@
     <strong>eth_getStorageAt</strong> (**experimental)<br>
     Returns the value from a storage position at a given address.<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getStorageAt&address=tit6e03d9cce9d60f3e9f2597e13cd4c54c55330cfd&position=0x0&blockNumber=latest&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getStorageAt&amp;address=tit6e03d9cce9d60f3e9f2597e13cd4c54c55330cfd&amp;position=0x0&amp;blockNumber=latest&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_getStorageAt&address=tit6e03d9cce9d60f3e9f2597e13cd4c54c55330cfd&position=tit0&blockNumber=latest&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_getStorageAt&amp;address=tit6e03d9cce9d60f3e9f2597e13cd4c54c55330cfd&amp;position=tit0&amp;blockNumber=latest&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br><br>
@@ -381,7 +381,7 @@
     <strong>eth_estimateGas</strong><br>
     Makes a call or transaction, which won't be added to the blockchain and returns the used gas, which can be used for estimating the used gas<br><br>
     <ul style="list-style-type:none">
-    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_estimateGas&to=0xf0160428a8552ac9bb7e050d90eeade4ddd52843&value=0xff22&gasPrice=0x051da038cc&gas=0xffffff&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_estimateGas&amp;to=0xf0160428a8552ac9bb7e050d90eeade4ddd52843&amp;value=0xff22&amp;gasPrice=0x051da038cc&amp;gas=0xffffff&amp;apikey=YourApiKeyToken</a></pre>
+    <li><pre class="wordwrap"><a href="http://explorer.titprotocol.com/publicAPI?module=proxy&action=eth_estimateGas&to=titf0160428a8552ac9bb7e050d90eeade4ddd52843&value=titff22&gasPrice=tit051da038cc&gas=titffffff&apikey=YourApiKeyToken">http://explorer.titprotocol.com/publicAPI?module=proxy&amp;action=eth_estimateGas&amp;to=titf0160428a8552ac9bb7e050d90eeade4ddd52843&amp;value=titff22&amp;gasPrice=tit051da038cc&amp;gas=titffffff&amp;apikey=YourApiKeyToken</a></pre>
     </li>
     </ul>
     <br><br>

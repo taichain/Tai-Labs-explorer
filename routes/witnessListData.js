@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var mongoose = require( 'mongoose' );
+var titChange = require('../tools/titChange')
 var Witness = mongoose.model('Witness');
 var Block = mongoose.model('Block');
 var resultData={"totalPage":0, "list":null, "page":0};
@@ -39,7 +40,7 @@ module.exports = function(req, res){
     Block.find({}, "number witness timestamp").sort("-number").limit(pageSize).lean(true).exec(function(err, docs){
       var listData = [];
       for(var i=0; i<docs.length; i++){
-        listData.push({"block":docs[i].number, "mn_reward":0.3375, "mn_pubkey":docs[i].witness, "timestamp":docs[i].timestamp});
+        listData.push({"block":docs[i].number, "mn_reward":0.3375, "mn_pubkey":"tit"+docs[i].witness, "timestamp":docs[i].timestamp});
       }
       res.write(JSON.stringify(listData));
       res.end();
@@ -91,7 +92,7 @@ function getList(res, page, pageSize, listFormat){
         //   status = "ENABLED";
         // else
         //   status = "DISCONNECT";
-        listData.push({"pubkey":docs[i].witness, "nodetype": "Masternode", "status": status});
+        listData.push({"pubkey":"tit"+docs[i].witness, "nodetype": "Masternode", "status": status});
       }
       res.write(JSON.stringify(listData));
       res.end();

@@ -227,7 +227,6 @@ var getData = function(req, res){
       var lim = MAX_ENTRIES;
     else
       var lim = parseInt(limit);
-
     DATA_ACTIONS[action](lim, res);
 
   } else {
@@ -358,6 +357,7 @@ var sendTxs = function(lim, res) {
             for(var i=0;i<txs.length;i++){
               txs[i].from = titChange.toTit(txs[i].from)
               txs[i].to = titChange.toTit(txs[i].to)
+              txs[i].hash = titChange.toTit(txs[i].hash)
             }
           }
           res.write(JSON.stringify({"txs": txs}));
