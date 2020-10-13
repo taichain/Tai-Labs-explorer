@@ -46,7 +46,7 @@ angular.module('BlocksApp').controller('HomeController', function($rootScope, $s
         url: '/totalBalance',
         data: {}
       }).success(function(data) {
-        $scope.totalBalance = Number(data)+5500000;
+        $scope.totalBalance = Number(Number(data)+5500000).toFixed(4);
       });
     }
 
