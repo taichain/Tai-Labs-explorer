@@ -27,6 +27,7 @@ angular.module('BlocksApp').controller('HomeController', function($rootScope, $s
 
       todayRewards();
       totalNodes();
+      totalBalance();
     }
 
     function todayRewards(){
@@ -36,6 +37,16 @@ angular.module('BlocksApp').controller('HomeController', function($rootScope, $s
         data: {}
       }).success(function(data) {
         $scope.todayRewards = data;
+      });
+    }
+
+    function totalBalance(){
+      $http({
+        method: 'POST',
+        url: '/totalBalance',
+        data: {}
+      }).success(function(data) {
+        $scope.totalBalance = data;
       });
     }
 

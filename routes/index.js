@@ -1,5 +1,7 @@
 var mongoose = require( 'mongoose' );
 const http = require('http');
+var Web3 = require('web3')
+
 var titChange = require('../tools/titChange')
 var Block     = mongoose.model( 'Block' );
 var Transaction = mongoose.model( 'Transaction' );
@@ -71,6 +73,7 @@ module.exports = function(app){
   app.post('/fiat', fiat);
   app.post('/stats', stats);
   app.post('/todayRewards', todayRewards);
+  app.post('/totalBalance',totalBalance)
   app.post('/totalMasterNodes', totalMasterNodes);
 
 }
@@ -291,6 +294,34 @@ var todayRewards = function(req, res) {
     res.write(String(regDecimal(0.38589*c, 4)));
     res.end();
   });
+}
+let web3 = new Web3(new Web3.providers.HttpProvider("http://47.242.34.250:8787"))
+var totalBalance =   async function (req,res) {
+  try {
+    web3.eth.getBlockNumber(function(er,newBlock){
+      if(er){
+        res.write('0');
+        res.end();
+        return
+      }
+      web3.eth.getBalance("0x0000000000000000000000000000000000000000",function(ber,bal){
+        if(ber){
+          res.write('0');
+          res.end();
+          return
+        }
+        let reward = newBlock*0.38589
+        let curR = reward-bal/10**18
+        res.write(String(curR))
+        res.end()
+      })
+    })
+  } catch (error) {
+    console.log("er--",error)
+    res.write('0');
+    res.end();
+  }
+  
 }
 
 var totalMasterNodes = function(req, res) {
