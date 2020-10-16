@@ -71,7 +71,7 @@ exports.getBlock = function(blockNumber){
     console.log("getBlock err:", err);
   }
   return blockData;
-}
+} 
 
 exports.data = async function(req, res){
   //console.log("web3relay data :"+req.client.remoteAddress+":"+req.client.remotePort);
@@ -156,13 +156,14 @@ exports.data = async function(req, res){
     }
     if (options.indexOf("balance") > -1) {
       try {
-        if(addr.toLowerCase() == benefitCat.toLowerCase()){
-          let totalDeposit = await  benefitContract.totalDeposit.call();
-          addrData["balance"] = totalDeposit;
-        }else{
-          addrData["balance"] = web3.eth.getBalance(titChange.toAddr(addr));
-        }
-	addrData["balance"] = etherUnits.toEther(addrData["balance"], 'wei');
+        // if(addr.toLowerCase() == benefitCat.toLowerCase()){
+        //   let totalDeposit = await  benefitContract.totalDeposit.call();
+        //   addrData["balance"] = totalDeposit;
+        // }else{
+          
+        // }
+        let balnc = web3.eth.getBalance(titChange.toAddr(addr));
+	      addrData["balance"] = etherUnits.toEther(balnc, 'wei');
       } catch(err) {
         console.error("AddrWeb3 error :" + err);
         addrData = {"error": true};

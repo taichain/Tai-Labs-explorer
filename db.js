@@ -133,7 +133,7 @@ mongoose.model('LogEvent', LogEvent);
 //all address
 var Address = new Schema(
     {
-        "addr": {type: String, index: {unique: true}},
+        "addr": {type: String},
         "type": {type: Number, index: true},//0:normal 1:contract 2:masternode
         "balance": Number
     });
