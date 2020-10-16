@@ -62,7 +62,7 @@ const METHOD_DIC = {
 };
 
 var ContractStruct;
-var intervalTime = 100;//采集间隔
+var intervalTime = 1000;//采集间隔
 //the TX has no receipt while grabbing block, we cache TX and grab later
 var laterGrabBlockDatas = [];
 
